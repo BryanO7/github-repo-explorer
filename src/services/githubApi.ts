@@ -30,3 +30,18 @@ export async function fetchUserRepositories(username: string): Promise<Repositor
 
 
 }
+
+export async function fetchUserProfile(username: string) {
+    try {
+        const response = await octokit.request('GET /users/{username}', {
+            username: username,
+        });
+
+    return response.data;
+
+}catch (error){
+    console.error('Error fetching user profile',error);
+
+    throw error;
+}
+}
