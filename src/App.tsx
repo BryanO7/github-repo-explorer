@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { fetchUserRepositories } from './services/githubApi';
-import { Repository } from './types/interfaces.ts';
+import {fetchUserRepositories} from './services/githubApi';
+import {Repository, RepositoryOwner} from './types/interfaces.ts';
 import './styles/App.css';
 import Header from './components/Header';
 import SearchBar from "./components/SearchBar.tsx";
@@ -11,8 +11,12 @@ function App() {
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [userProfile, setUserProfile] = useState<RepositoryOwner | null>(null);
+
+
 
   const handleSearch = async (username: string) => {
+
       setIsLoading(true);
       setError(null);
 
@@ -20,10 +24,16 @@ function App() {
 
           const data = await fetchUserRepositories(username);
           setRepositories(data);
+
+          if (data.length > 0){
+              setUserProfile(data[0].owner)
+          }
+
       } catch(err){
           console.error('Error fetchign repositories:',err)
           setError('Failed to fetch repositories.')
           setRepositories([])
+
       } finally {
           setIsLoading(false);
       }
@@ -61,6 +71,20 @@ function App() {
         {/* Display repositories if available */}
         {repositories.length > 0 && (
             <div>
+
+                <div className="user-profile">
+                    <img
+                        src={userProfile?.avatar_url}
+                        alt="GitHub avatar"
+                        className="avatar"
+                    />
+                    <div>
+                        <h2>{userProfile?.login}</h2>
+
+                    </div>
+                </div>
+
+
                 <div className="filters">
                     <div>
                         <label htmlFor="name-filter">Filter by name: </label>
@@ -92,13 +116,17 @@ function App() {
                 </div>
 
                 <h2>Found {filteredRepositories.length} repositories</h2>
-                <ul>
+
                     {filteredRepositories.map(repo => (
                         <li key={repo.id}>
-                            {repo.name} {repo.language && <span>({repo.language})</span>}
+                            <a href={repo.html_url} target="_blank" rel="noreferrer">
+                                {repo.name}
+                            </a>
+                            {repo.language && <span>({repo.language})</span>}
+
                         </li>
                     ))}
-                </ul>
+
             </div>
         )}
     </div>
