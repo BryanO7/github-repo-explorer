@@ -4,6 +4,9 @@ import {Repository, RepositoryOwner} from './types/interfaces.ts';
 import './styles/App.css';
 import Header from './components/Header';
 import SearchBar from "./components/SearchBar.tsx";
+import Filters from './components/Filters.tsx';
+import RepositoryList from "./components/RepositoryList.tsx";
+import UserProfile from "./components/UserProfile.tsx";
 function App() {
 
   const [nameFilter, setNameFilter] = useState('');
@@ -72,60 +75,22 @@ function App() {
         {repositories.length > 0 && (
             <div>
 
-                <div className="user-profile">
-                    <img
-                        src={userProfile?.avatar_url}
-                        alt="GitHub avatar"
-                        className="avatar"
-                    />
-                    <div>
-                        <h2>{userProfile?.login}</h2>
 
-                    </div>
-                </div>
+                {userProfile && <UserProfile owner={userProfile} />}
 
 
-                <div className="filters">
-                    <div>
-                        <label htmlFor="name-filter">Filter by name: </label>
-                        <input
-                            id="name-filter"
-                            type="text"
-                            value={nameFilter}
-                            onChange={(e) => setNameFilter(e.target.value)}
-                            placeholder="Repository name"
-                        />
-                    </div>
+                <Filters
+                    nameFilter={nameFilter}
+                    setNameFilter={setNameFilter}
+                    languageFilter={languageFilter}
+                    setLanguageFilter={setLanguageFilter}
+                    uniqueLanguages={getUniqueLanguages()}
+                />
 
-                    <div>
-                        <label htmlFor="language-filter">Filter by language: </label>
-                        {/* Creates a dropdown with all unique languages found in the repository  */}
-                        <select
-                            id="language-filter"
-                            value={languageFilter}
-                            onChange={(e) => setLanguageFilter(e.target.value)}
-                        >
-                            <option value="">All Languages</option>
-                            {getUniqueLanguages().map(language => (
-                                <option key={language} value={language}>
-                                    {language}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
 
-                <h2>Found {filteredRepositories.length} repositories</h2>
+                {/*calling the repositoryList component */}
+               <RepositoryList repositories={filteredRepositories} />
 
-                    {filteredRepositories.map(repo => (
-                        <li key={repo.id}>
-                            <a href={repo.html_url} target="_blank" rel="noreferrer">
-                                {repo.name}
-                            </a>
-                            {repo.language && <span>({repo.language})</span>}
-
-                        </li>
-                    ))}
 
             </div>
         )}

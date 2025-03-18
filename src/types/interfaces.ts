@@ -24,7 +24,3 @@ export interface RepositoryOwner{
     email?: string | null | undefined;
 }
 
-export interface SearchFilters{
-    nameFilter: string | null;
-    languageFilter: string | null;
-}
