@@ -4,6 +4,12 @@ type RepositoryListProps = {
     repositories: Repository[];
 };
 
+/**
+* RepositoryList component displays a list of GitHub repositories
+*
+* @param {object} props - component props <br/>
+* @param {Repository[]} props.repositories - Array of GitHub repositories to display <br/>
+*/
 const RepositoryList = ({ repositories }: RepositoryListProps) => {
     if (repositories.length === 0) {
         return <div className="empty-state">No repositories found.</div>;

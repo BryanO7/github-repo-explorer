@@ -1,4 +1,4 @@
-// Interface for a GitHub repository
+// Interface for a GitHub repo
 
 export interface Repository {
     id: number;
@@ -12,7 +12,7 @@ export interface Repository {
     owner: RepositoryOwner;
     node_id: string
 }
-
+//Interface for the owner of a repo
 export interface RepositoryOwner{
     login: string;
     id: number;

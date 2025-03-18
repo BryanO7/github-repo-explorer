@@ -1,54 +1,61 @@
-# React + TypeScript + Vite
+# GitHub Repositories With Search Functionality
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple yet functional application that allows users to search for GitHub repositories by entering a username. The repositories are displayed in a list, and users can filter them by name or programming language.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Search for repositories by GitHub username.
+    
+* Filter repositories by name and programming language.
+    
+* Responsive user interface following good UX principles.
+    
+* Uses the official GitHub API to fetch repository data.
+    
+* Developed with React and TypeScript.
+    
+* Components documented and tested using Storybook.
 
-## Expanding the ESLint configuration
+# Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* React + [Vite](https://vitejs.dev/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Octokit](https://github.com/octokit)
+* GitHub REST API v3
+* Storybook
+# Installation and Usage
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+##  Prerequisites
+    Node.js (v16 or higher recommended)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 1. Clone the repository:
+    git clone https://github.com/BryanO7/github-repo-explorer.git
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### 2. Navigate to the project directory:
+    cd your-download-folder/github-repo-explorer
+### 3. Install dependencies:
+    npm install
+### 4. Start the development server:
+    npm run dev
+
+## Storybook Documentation
+To view component documentation in Storybook:
+
+    npm run storybook
+
+This will open a UI to explore components in isolation.
+
+
+## Future Improvements
+
+* Implement unit and integration tests.
+
+* Deploy the application online.
+
+* Use GitHub GraphQL API v4 for optimized queries.
+
+* Enhance UI with animations and better accessibility support.
+
+* Implement authentication with a GitHub API token to increase request limits (currently limited to 50 requests per hour).
