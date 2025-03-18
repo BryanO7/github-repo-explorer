@@ -1,6 +1,6 @@
 # GitHub Repositories With Search Functionality
 
-This project is a simple yet functional application that allows users to search for GitHub repositories by entering a username. The repositories are displayed in a list, and users can filter them by name or programming language.
+This project is a simple yet functional application that allows users to search for GitHub repositories by entering a username. The repositories are displayed in a list, and users can filter them by name and/or programming language.
 
 ## Features
 
